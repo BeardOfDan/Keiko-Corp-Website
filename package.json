@@ -1,0 +1,23 @@
+{
+  "name": "performance-keiko-corp-website",
+  "version": "1.0.0",
+  "description": "An intricate practice project for performance enhancement best practices.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BeardOfDan/Performance-Keiko-Corp-Website.git"
+  },
+  "author": "Dan Roberts",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BeardOfDan/Performance-Keiko-Corp-Website/issues"
+  },
+  "homepage": "https://github.com/BeardOfDan/Performance-Keiko-Corp-Website#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "path": "^0.12.7"
+  }
+}
