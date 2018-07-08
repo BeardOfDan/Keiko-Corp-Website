@@ -3,11 +3,10 @@ $(document).ready(function () {
   //Navigation menu scrollTo
   $('header nav ul li a').click(function (event) {
     event.preventDefault();
-    var section = $(this).attr('href');
-    var section_pos = $(section).position();
+    const section = $(this).attr('href');
 
-    if (section_pos) {
-      $(window).scrollTo({ top: section_pos.top, left: '0px' }, 1000);
+    if (section) {
+      document.querySelector(section).scrollIntoView({ behavior: 'smooth' })
     }
 
   });
