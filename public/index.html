@@ -8,12 +8,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" async />
-  <link rel="stylesheet" type="text/css" href="css/owl.transitions.css" async />
-  <link rel="stylesheet" type="text/css" href="css/owl.carousel.css" async />
-  <link rel="stylesheet" type="text/css" href="css/animate.css" async />
-  <link rel="stylesheet" type="text/css" href="css/main.css" async />
-
 </head>
 
 <body>
@@ -321,6 +315,37 @@
       <strong>Pixelhint</strong>
   </footer>
   <!--  End Footer Section  -->
+
+  <!-- CSS Inclusion-->
+  <script>
+    const loadStyleSheet = (src) => {
+      if (document.createStyleSheet) {
+        document.createStyleSheet(src);
+      }
+      else {
+        const stylesheet = document.createElement('link');
+        stylesheet.href = src;
+        stylesheet.rel = 'stylesheet';
+        stylesheet.type = 'text/css';
+        document.getElementsByTagName('head')[0].appendChild(stylesheet);
+      }
+    }
+
+    // Load the CSS files after the window has loaded, this makes the CSS truely non-render-blocking
+    window.onload = function () {
+      const styleSheets = [ // the relative paths to the CSS files
+        './css/bootstrap.css',
+        './css/owl.transitions.css',
+        './css/owl.carousel.css',
+        './css/animate.css',
+        './css/main.css'
+      ];
+
+      for (let i = 0; i < styleSheets.length; i++) {
+        loadStyleSheet(styleSheets[i]);
+      }
+    };
+  </script>
 
   <!-- Scripts -->
   <script type="text/javascript" src="js/jquery.js"></script>
