@@ -2,8 +2,15 @@
   
 # Error Avoidance:
 # check if the current branch's contents have been commited
+#   git status --porcelain
+#     If empty, then all is good, else, uncommited stuff exists
 # if so, then proceed
 # else, tell the user that they need to wrap things up, then exit the script
+# ---
+# Check if the minifier (yuicompressor) is installed
+#   Probably check the version of the command, if it throws an error, then the command is not installed
+# if so, then proceed
+# else, tell the user that it is a dependency of the script, then exit the script
 
 # check the current git branch
 #   git rev-parse --abbrev-ref HEAD
@@ -11,7 +18,7 @@
 # else, switch to minified, then proceed
 #   copy the contents of master into minify
 #   git checkout minified
-#   git checkout master . #copty contents of master into minified
+#   git checkout master . #copy contents of master into minified
 
 # minify all the js and css files
 #   yuicompressor 
