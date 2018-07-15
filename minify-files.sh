@@ -85,7 +85,7 @@ echo -e '\nEnd of script\n'
 
 # Use the hash of the last used master branch commit to figure out which files need to be minified (because they were chanaged) and only minify them, otherwise, reuse the existing minified files
 
-
+# Allow for an argument to be passed to tell the script to push to the server before exiting
 
 
 
