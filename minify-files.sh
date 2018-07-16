@@ -5,6 +5,9 @@ gitStatus=$(git status --porcelain)
 echo -en '\ngit status: '; echo $gitStatus # should be an empty string, if not, then is not clean
 
 # check if the dependencies (uglifyjs and uglifycss) are installed
+# uglify-js --version 
+#   will have to check if it says 'command not found' or something like that,
+#   otherwise, it is installed and can continue
 
 # check the current git branch
 echo -en '\ncurrent git branch: '; echo git rev-parse --abbrev-ref HEAD
@@ -21,6 +24,9 @@ find public/js -type f \
   -exec echo {} \;
 # and minify them
 # -exec uglifyjs [options and arguments go here]
+# -exec uglify-js -o {}.min {} \;
+#   if can save over then save as itself, else, save as {}.min, 
+$   then remove {}, then rename {}.min as {}
 
 # commit changes
 # need to have generated commit message
