@@ -5,9 +5,10 @@ gitStatus=$(git status --porcelain)
 echo -en '\ngit status: '; echo $gitStatus # should be an empty string, if not, then is not clean
 
 # check if the dependencies (uglifyjs and uglifycss) are installed
-# uglify-js --version 
-#   will have to check if it says 'command not found' or something like that,
-#   otherwise, it is installed and can continue
+# uglifyjs --version => 'uglify-js 3.4.5'
+#   if the first few characters are 'uglify-js' then it is installed
+#   Future todo: check that the installed version is at least the current 
+#    (as of this script's writing) version
 
 # check the current git branch
 echo -en '\ncurrent git branch: '; echo git rev-parse --abbrev-ref HEAD
