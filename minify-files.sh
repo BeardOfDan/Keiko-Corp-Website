@@ -1,7 +1,10 @@
 #!/bin/bash
 
+echo -e '\nStart of script';
+echo      '===============';
+
 # check if the git branch is clean
-gitStatus=$(git status --porcelain)
+gitStatus=$(git status --porcelain);
 echo -en '\ngit status: '; echo $gitStatus # should be an empty string, if not, then is not clean
 
 # check if the dependencies (uglifyjs and uglifycss) are installed
@@ -9,15 +12,19 @@ echo -en '\ngit status: '; echo $gitStatus # should be an empty string, if not, 
 #   if the first few characters are 'uglify-js' then it is installed
 #   Future todo: check that the installed version is at least the current 
 #    (as of this script's writing) version
+echo -en '\nuglify version: '; echo $(uglifyjs --version);
 
 # check the current git branch
-echo -en '\ncurrent git branch: '; echo git rev-parse --abbrev-ref HEAD
-echo '' # blank line for formatting 
+echo -en '\ncurrent git branch: '; echo $(git rev-parse --abbrev-ref HEAD);
 # handle branch switching if needed
 #   ex. if on master, (which is probable), then checkout minified
 
 # copy master's contents into minified
 #   git checkout master . 
+echo -e '\ngit checkout master .';
+
+echo -e '\nFiles to be minified:';
+echo      '---------------------';
 
 # find the files
 find public/js -type f \
@@ -27,15 +34,23 @@ find public/js -type f \
 # -exec uglifyjs [options and arguments go here]
 # -exec uglify-js -o {}.min {} \;
 #   if can save over then save as itself, else, save as {}.min, 
-$   then remove {}, then rename {}.min as {}
+#   then remove {}, then rename {}.min as {}
+
+echo -e '\nminification occurs here...';
 
 # commit changes
 # need to have generated commit message
+echo -e "\ngit commit -am 'Generated commit message'";
+
+# push updated minify branch
+echo -e '\ngit push productionServerRemote minifiedBranch';
 
 # go back to the branch the user was on (presumably master)
 #   otherwise, they'll have to do this step themselves everytime they use this script
+echo -e '\ngit checkout master';
 
-echo -e '\nEnd of script\n'  
+echo -e '\n=============';
+echo -e   'End of script\n';
 
 # ================
 # Below is outline
