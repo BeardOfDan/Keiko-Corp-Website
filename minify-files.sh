@@ -8,8 +8,8 @@ gitStatus=$(git status --porcelain);
 echo -en '\ngit status: '; echo $gitStatus # should be an empty string, if not, then is not clean
 
 # check if the dependencies (uglifyjs and uglifycss) are installed
-# uglifyjs --version => 'uglify-js 3.4.5'
-#   if the first few characters are 'uglify-js' then it is installed
+# uglifyjs --version => 'uglify-es 3.3.9'
+#   if the first few characters are 'uglify-es' then it is installed
 #   Future todo: check that the installed version is at least the current 
 #    (as of this script's writing) version
 echo -en '\nuglify version: '; echo $(uglifyjs --version);
@@ -27,14 +27,22 @@ echo -e '\nFiles to be minified:';
 echo      '---------------------';
 
 # find the files
-find public/js -type f \
-  -name '*.js' ! -name '*.min.*' \
-  -exec echo {} \;
+# find public/js -type f \
+#   -name '*.js' ! -name '*.min.*' \
+#   -exec echo {} \;
 # and minify them
 # -exec uglifyjs [options and arguments go here]
 # -exec uglify-js -o {}.min {} \;
 #   if can save over then save as itself, else, save as {}.min, 
 #   then remove {}, then rename {}.min as {}
+
+find public/js -type f \
+  -name "*.js" ! -name "*.min.*" ! -name "vfs_fonts*" \
+  -exec echo {} \; \
+  -exec uglifyjs -o {}.min {} \; \
+  -exec rm {} \; \
+  -exec mv {}.min {} \;
+
 
 echo -e '\nminification occurs here...';
 
