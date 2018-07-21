@@ -1,23 +1,48 @@
 #!/bin/bash
 
 echo -e '\nStart of script';
-echo      '===============';
+echo -e   '===============\n';
 
 # check if the git branch is clean
 gitStatus=$(git status --porcelain);
-echo -en '\ngit status: '; echo $gitStatus # should be an empty string, if not, then is not clean
+# echo -en '\ngit status: '; echo $gitStatus # should be an empty string, if not, then is not clean
+# note: when this script has been altered, it will stop the status from being clean
+
+echo -n 'gitStatus: '; echo $gitStataus;
+
+if [[ $gitStatus != '' ]] 
+then
+
+  echo -e '\nThe branch is not clean! Please make a commit or reset the branch before running this script.\n';
+  exit 1;
+
+fi
 
 # check if the dependencies (uglifyjs and uglifycss) are installed
 # uglifyjs --version => 'uglify-es 3.3.9'
 #   if the first few characters are 'uglify-es' then it is installed
 #   Future todo: check that the installed version is at least the current 
 #    (as of this script's writing) version
-echo -en '\nuglify version: '; echo $(uglifyjs --version);
+#echo -en '\nuglify version: '; echo $(uglifyjs --version);
+uglifyVersion=$(uglifyjs --version);
+uglifyStart='uglify-es'; # the start of uglify version
+
+echo -en '\nuglifyVersion: '; echo $uglifyVersion;
+echo -n    'uglifyStart:   '; echo $uglifyStart;
+
+if [[ $uglifyVersion != uglifyStart* ]]
+then
+  
+  echo -e "\nYou are missing a dependency for this script. Please run 'npm install -g uglify-es' to install the required dependency.\n";
+  exit 1;
+
+fi
 
 # check the current git branch
 echo -en '\ncurrent git branch: '; echo $(git rev-parse --abbrev-ref HEAD);
 # handle branch switching if needed
 #   ex. if on master, (which is probable), then checkout minified
+#                                          git checkout minified
 
 # copy master's contents into minified
 #   git checkout master . 
@@ -26,25 +51,12 @@ echo -e '\ngit checkout master .';
 echo -e '\nFiles to be minified:';
 echo      '---------------------';
 
-# find the files
-# find public/js -type f \
-#   -name '*.js' ! -name '*.min.*' \
-#   -exec echo {} \;
-# and minify them
-# -exec uglifyjs [options and arguments go here]
-# -exec uglify-js -o {}.min {} \;
-#   if can save over then save as itself, else, save as {}.min, 
-#   then remove {}, then rename {}.min as {}
-
 find public/js -type f \
   -name "*.js" ! -name "*.min.*" ! -name "vfs_fonts*" \
   -exec echo {} \; \
   -exec uglifyjs -o {}.min {} \; \
   -exec rm {} \; \
   -exec mv {}.min {} \;
-
-
-echo -e '\nminification occurs here...';
 
 # commit changes
 # need to have generated commit message
