@@ -65,11 +65,13 @@ find public/js -type f \
   -exec rm {} \; \
   -exec mv {}.min {} \;
 
+echo ''; # blank line for formatting
+
 git commit -am "branch: $currentBranch | short hash: $currentShortHash"
 
 # push updated minify branch
 #echo -e '\ngit push productionServerRemote minifiedBranch';
-echo 'TODO: add line to push to server'
+echo -e '\nTODO: add line to push to server\n'
 
 git checkout $currentBranch
 
