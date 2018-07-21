@@ -8,8 +8,7 @@ gitStatus=$(git status --porcelain);
 # echo -en '\ngit status: '; echo $gitStatus # should be an empty string, if not, then is not clean
 # note: when this script has been altered, it will stop the status from being clean
 
-echo -n "gitStatus: '"; echo -n $gitStatus; echo "'";
-
+# The second part of the following conditional is for dev purposes and mus tbe removed for production use
 if [ [ $gitStatus != '' ] && [ $gitStatus != 'M minify-files.sh' ] ] 
 then
 
@@ -26,11 +25,6 @@ fi
 #echo -en '\nuglify version: '; echo $(uglifyjs --version);
 uglifyVersion=$(uglifyjs --version);
 uglifyStart='uglify-es'; # the start of uglify version
-
-echo -en '\nuglifyVersion: '; echo $uglifyVersion;
-echo -n    'uglifyStart:   '; echo $uglifyStart;
-
-echo -en 'comparison: '; echo [[ $uglifyVersion != $uglifyStart* ]];
 
 if [[ $uglifyVersion != $uglifyStart* ]]
 then
