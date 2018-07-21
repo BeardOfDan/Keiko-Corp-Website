@@ -55,6 +55,7 @@ lastHash=${lastCommit:29:8};
 echo -e "\nlastHash: '$lastHash'\n";
 
 # This is a dev breakpoint type thing. Right now, am tweaking a few things, based on how they act at run time
+git checkout master
 exit 1;
 
 if [[ lastHash == $currentShortHash ]]
