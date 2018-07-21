@@ -35,14 +35,26 @@ then
 fi
 
 # check the current git branch
-echo -en '\ncurrent git branch: '; echo $(git rev-parse --abbrev-ref HEAD);
+# echo -en '\ncurrent git branch: '; echo $(git rev-parse --abbrev-ref HEAD);
 # handle branch switching if needed
 #   ex. if on master, (which is probable), then checkout minified
 #                                          git checkout minified
 
+currentBranch=$(git rev-parse --abbrev-ref HEAD);
+currentShortHash=$(git rev-parse --short master);
+
+if [[ $currentBranch != 'minified' ]]
+then 
+
+  git checkout minified
+
+fi
+
 # copy master's contents into minified
 #   git checkout master . 
-echo -e '\ngit checkout master .';
+#echo -e '\ngit checkout master .';
+
+git checkout master .
 
 echo -e '\nFiles to be minified:';
 echo      '---------------------';
@@ -56,14 +68,20 @@ find public/js -type f \
 
 # commit changes
 # need to have generated commit message
-echo -e "\ngit commit -am 'Generated commit message'";
+#echo -e "\ngit commit -am 'Generated commit message'";
+
+git commit -am "branch: $currentBranch | short hash: $currentShortHash"
 
 # push updated minify branch
-echo -e '\ngit push productionServerRemote minifiedBranch';
+#echo -e '\ngit push productionServerRemote minifiedBranch';
+
+echo 'TODO: add line to push to server'
 
 # go back to the branch the user was on (presumably master)
 #   otherwise, they'll have to do this step themselves everytime they use this script
-echo -e '\ngit checkout master';
+#echo -e '\ngit checkout master';
+
+git checkout $currentBranch
 
 echo -e '\n=============';
 echo -e   'End of script\n';
