@@ -5,11 +5,8 @@ echo -e   '===============\n';
 
 # check if the git branch is clean
 gitStatus=$(git status --porcelain);
-# echo -en '\ngit status: '; echo $gitStatus # should be an empty string, if not, then is not clean
-# note: when this script has been altered, it will stop the status from being clean
 
-# The second part of the following conditional is for dev purposes and mus tbe removed for production use
-if [ [ $gitStatus != '' ] && [ $gitStatus != 'M minify-files.sh' ] ] 
+if [[ "$gitStatus" != '' ]] 
 then
 
   echo -e '\nThe branch is not clean! Please make a commit or reset the branch before running this script.\n';
@@ -19,10 +16,6 @@ fi
 
 # check if the dependencies (uglifyjs and uglifycss) are installed
 # uglifyjs --version => 'uglify-es 3.3.9'
-#   if the first few characters are 'uglify-es' then it is installed
-#   Future todo: check that the installed version is at least the current 
-#    (as of this script's writing) version
-#echo -en '\nuglify version: '; echo $(uglifyjs --version);
 uglifyVersion=$(uglifyjs --version);
 uglifyStart='uglify-es'; # the start of uglify version
 
@@ -34,12 +27,6 @@ then
 
 fi
 
-# check the current git branch
-# echo -en '\ncurrent git branch: '; echo $(git rev-parse --abbrev-ref HEAD);
-# handle branch switching if needed
-#   ex. if on master, (which is probable), then checkout minified
-#                                          git checkout minified
-
 currentBranch=$(git rev-parse --abbrev-ref HEAD);
 currentShortHash=$(git rev-parse --short master);
 
@@ -50,10 +37,22 @@ then
 
 fi
 
-# copy master's contents into minified
-#   git checkout master . 
-#echo -e '\ngit checkout master .';
+lastCommit=$(git log -1 --pretty=%B);
+lastHash=${lastCommit:29:8};
 
+if [[ lastHash == $currentShortHash ]]
+then
+
+  echo -e '\nThe minified branch is already up to date with the master branch!\n';
+
+  echo -e "going back to the previous branch...\n";
+  git checkout $currentBranch
+
+  exit 0;
+
+fi
+
+# copy master's contents into minified
 git checkout master .
 
 echo -e '\nFiles to be minified:';
@@ -66,20 +65,11 @@ find public/js -type f \
   -exec rm {} \; \
   -exec mv {}.min {} \;
 
-# commit changes
-# need to have generated commit message
-#echo -e "\ngit commit -am 'Generated commit message'";
-
 git commit -am "branch: $currentBranch | short hash: $currentShortHash"
 
 # push updated minify branch
 #echo -e '\ngit push productionServerRemote minifiedBranch';
-
 echo 'TODO: add line to push to server'
-
-# go back to the branch the user was on (presumably master)
-#   otherwise, they'll have to do this step themselves everytime they use this script
-#echo -e '\ngit checkout master';
 
 git checkout $currentBranch
 
