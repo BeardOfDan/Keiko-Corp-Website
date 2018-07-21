@@ -88,6 +88,8 @@ find public/css -type f \
   -exec rm {} \; \
   -exec mv {}.min {} \;
 
+echo ''; # blank line for formatting
+
 git commit -am "branch: $currentBranch | short hash: $currentShortHash"
 
 # push updated minify branch
