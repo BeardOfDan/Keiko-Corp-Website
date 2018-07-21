@@ -70,7 +70,7 @@ echo -e '\nJS files to be minified:';
 echo      '------------------------';
 
 find public/js -type f \
-  -name "*.js" ! -name "*.min.*" ! -name "vfs_fonts*" \
+  -name "*.js" ! -name "*.min.*"  \
   -exec echo {} \; \
   -exec uglifyjs -o {}.min {} \; \
   -exec rm {} \; \
@@ -84,7 +84,7 @@ echo      '-------------------------';
 find public/css -type f \
   -name "*.css" ! -name "*.min.*" \
   -exec echo {} \; \
-  -exec uglifycss -o {}.min {} \; \
+  -exec uglifycss --output {}.min {} \; \
   -exec rm {} \; \
   -exec mv {}.min {} \;
 
