@@ -27,6 +27,17 @@ then
 
 fi
 
+uglifyCssVersion=$(uglifycss --version);
+uglifyCssStart='uglifycss'; # the start of uglifycss version
+
+if [[ $uglifyCssVersion != $uglifyCssStart* ]]
+then
+
+  echo -e "You are missing a dependency for this script. Please run 'npm install -g uglifycss' to install the required dependency.\n";
+  exit 1;
+
+fi
+
 currentBranch=$(git rev-parse --abbrev-ref HEAD);
 currentShortHash=$(git rev-parse --short master);
 
@@ -55,8 +66,8 @@ fi
 # copy master's contents into minified
 git checkout master .
 
-echo -e '\nFiles to be minified:';
-echo      '---------------------';
+echo -e '\nJS files to be minified:';
+echo      '------------------------';
 
 find public/js -type f \
   -name "*.js" ! -name "*.min.*" ! -name "vfs_fonts*" \
@@ -66,6 +77,16 @@ find public/js -type f \
   -exec mv {}.min {} \;
 
 echo ''; # blank line for formatting
+
+echo -e '\nCSS files to be minified:';
+echo      '-------------------------';
+
+find public/css -type f \
+  -name "*.css" ! -name "*.min.*" \
+  -exec echo {} \; \
+  -exec uglifycss -o {}.min {} \; \
+  -exec rm {} \; \
+  -exec mv {}.min {} \;
 
 git commit -am "branch: $currentBranch | short hash: $currentShortHash"
 
