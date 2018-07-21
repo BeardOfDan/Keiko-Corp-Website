@@ -8,8 +8,7 @@ gitStatus=$(git status --porcelain);
 # echo -en '\ngit status: '; echo $gitStatus # should be an empty string, if not, then is not clean
 # note: when this script has been altered, it will stop the status from being clean
 
-# The second part of the following conditional is for dev purposes and mus tbe removed for production use
-if [ [ "$gitStatus" != '' ] && [ "$gitStatus" != 'M minify-files.sh' ] ] 
+if [[ "$gitStatus" != '' ]] 
 then
 
   echo -e '\nThe branch is not clean! Please make a commit or reset the branch before running this script.\n';
@@ -62,6 +61,7 @@ then
 
   echo -e '\nThe minified branch is already up to date with the master branch!\n';
 
+  echo -e "going back to master branch...   | currentBranch: $currentBranch \n";
   git checkout $currentBranch
 
   exit 0;
