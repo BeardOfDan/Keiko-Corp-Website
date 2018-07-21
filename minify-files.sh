@@ -30,9 +30,9 @@ uglifyStart='uglify-es'; # the start of uglify version
 echo -en '\nuglifyVersion: '; echo $uglifyVersion;
 echo -n    'uglifyStart:   '; echo $uglifyStart;
 
-echo -en 'comparison: '; echo $uglifyVersion != $uglifyStart*;
+echo -en 'comparison: '; echo [[ $uglifyVersion != $uglifyStart* ]];
 
-if [[ $uglifyVersion != uglifyStart* ]]
+if [[ $uglifyVersion != $uglifyStart* ]]
 then
   
   echo -e "\nYou are missing a dependency for this script. Please run 'npm install -g uglify-es' to install the required dependency.\n";
