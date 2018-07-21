@@ -9,7 +9,7 @@ gitStatus=$(git status --porcelain);
 # note: when this script has been altered, it will stop the status from being clean
 
 # The second part of the following conditional is for dev purposes and mus tbe removed for production use
-if [ [ $gitStatus != '' ] && [ $gitStatus != 'M minify-files.sh' ] ] 
+if [ [ "$gitStatus" != '' ] && [ "$gitStatus" != 'M minify-files.sh' ] ] 
 then
 
   echo -e '\nThe branch is not clean! Please make a commit or reset the branch before running this script.\n';
@@ -50,6 +50,24 @@ then
 
 fi
 
+lastCommit=$(git log -1 --pretty=%B);
+lastHash=${lastCommit:29:8};
+
+echo -e "\nlastHash: '$lastHash'\n";
+
+exit 1;
+
+if [[ lastHash == $currentShortHash ]]
+then
+
+  echo -e '\nThe minified branch is already up to date with the master branch!\n';
+
+  git checkout $currentBranch
+
+  exit 0;
+
+fi
+
 # copy master's contents into minified
 #   git checkout master . 
 #echo -e '\ngit checkout master .';
@@ -74,7 +92,6 @@ git commit -am "branch: $currentBranch | short hash: $currentShortHash"
 
 # push updated minify branch
 #echo -e '\ngit push productionServerRemote minifiedBranch';
-
 echo 'TODO: add line to push to server'
 
 # go back to the branch the user was on (presumably master)
