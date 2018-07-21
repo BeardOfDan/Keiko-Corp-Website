@@ -45,7 +45,7 @@ then
 
   echo -e '\nThe minified branch is already up to date with the master branch!\n';
 
-  echo -e "going back to master branch...   | currentBranch: $currentBranch \n";
+  echo -e "going back to the previous branch...\n";
   git checkout $currentBranch
 
   exit 0;
