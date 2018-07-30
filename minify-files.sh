@@ -93,8 +93,27 @@ echo ''; # blank line for formatting
 git commit -am "branch: $currentBranch | short hash: $currentShortHash"
 
 # push updated minify branch
-#echo -e '\ngit push productionServerRemote minifiedBranch';
-echo -e '\nTODO: add line to push to server\n'
+# command line arguments are used to determine if the script will push the new commit
+# $1 is the remote name
+# $2 is the branch name
+if [ $1 ]
+  then
+
+  if [ $2 ]
+    then
+
+    git push $1 $2;
+
+  else
+
+    git push $1 master;
+
+  fi
+else
+
+  echo -e '\nIf you want the script to push, then add 1 argument for the remote name and a second argument for the branch name';
+
+fi
 
 git checkout $currentBranch
 
