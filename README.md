@@ -10,3 +10,6 @@ This project is an exercise in taking a foreign code base and improving the perf
 To fully optimise performance, code will be pushed from a 'minified' branch, which uses all the same code as the 'master' branch, but with all of the files minified. Any changes made should affect the master branch, then update the 'minified' branch.
 
 This can be done automatically by running the minified script: 'npm run minified'
+
+Note: The minification script is in bash, and will therefore require the bash shell to run in
+Note: you may need to use the chmod command to enable use of the script
