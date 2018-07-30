@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "minify": "./minify-files.sh"
+    "minify": "./minify-files.sh heroku master"
   },
   "repository": {
     "type": "git",
