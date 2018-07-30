@@ -92,6 +92,8 @@ echo ''; # blank line for formatting
 
 git commit -am "branch: $currentBranch | short hash: $currentShortHash"
 
+echo ''; # blank line for formatting
+
 # push updated minify branch
 # command line arguments are used to determine if the script will push the new commit
 # $1 is the remote name
@@ -114,6 +116,8 @@ else
   echo -e '\nIf you want the script to push, then add 1 argument for the remote name and a second argument for the branch name';
 
 fi
+
+echo ''; # blank line for formatting
 
 git checkout $currentBranch
 
