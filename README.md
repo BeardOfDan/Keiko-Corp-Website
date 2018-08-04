@@ -13,3 +13,9 @@ This can be done automatically by running the minified script: 'npm run minified
 
 Note: The minification script is in bash, and will therefore require the bash shell to run in
 Note: you may need to use the chmod command to enable use of the script
+
+---
+
+## Known Bugs
+
+Due to a dependency in html-minifier, inline JavaScript is not currently minified in public/index.html. This is likely a simple fix, but has not been implemented yet, as it affects the minification of JavaScript files (they use a different minifier, and I need to ensure that installing the html dependency does not pollute the namespace).
