@@ -90,6 +90,12 @@ find public/css -type f \
 
 echo ''; # blank line for formatting
 
+echo -e 'Minifying public/index.html ...\n';
+
+html-minifier --remove-comments --collapse-whitespace --minify-js true --minify-css true public/index.html -o public/index.html
+
+echo ''; # blank line for formatting
+
 git commit -am "branch: $currentBranch | short hash: $currentShortHash"
 
 echo ''; # blank line for formatting
