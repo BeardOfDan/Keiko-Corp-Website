@@ -5,6 +5,35 @@ This project is an exercise in taking a foreign code base and improving the perf
 
 ---
 
+## Current Speed Test Scores
+
+Google Page Speed Insights:
+  Optimization:
+    Mobile: 99/100
+    Desktop: 94/100
+
+Web Page Performance Test:
+  First Byte Time: A
+  Keep-alive Enabled: A
+  Compress Transfer: A
+  Compress Images: A
+
+Pingdom Website Speed Test:
+  Performance grade: 82/100
+  Page size: 720.0 KB
+  Load time: 192 ms
+  Requests: 46
+
+GTmetrix:
+  PageSpeed Score: 91%
+  YSlow Score: 75%
+  Fully Loaded Time: 1.4 s
+  Total Page Size: 736 KB
+  Requests: 46
+
+
+---
+
 ## Notes on contributing
 
 To fully optimise performance, code will be pushed from a 'minified' branch, which uses all the same code as the 'master' branch, but with all of the files minified. Any changes made should affect the master branch, then update the 'minified' branch.
