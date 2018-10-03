@@ -1,13 +1,13 @@
 
 # Performance Keiko Corp Website
 
-This project is an exercise in taking a foreign code base and improving the performance. As seen below, my current scores are excellent. The commit history, of the master branch, should be a thorough list of the steps I took to improve the website. Since the initial website was just the front end, I made a simple server, so it could be accesible to testing websites. This occurs at the commit with the short hash of 9839944.
+This project was an exercise in taking a foreign code base and improving the performance. As seen below, my current scores are excellent. The commit history, of the master branch, should serve as a thorough list of the steps I took to improve the website. Since the initial website was just the front end, I made a simple server, so it could be accesible to testing websites. This occurs at the commit with the short hash of 9839944.
 
 ---
 
 ## Current Speed Test Scores
 
-#### Google Page Speed Insights Optimization:
+#### [Google Page Speed Insights Optimization:](https://developers.google.com/speed/pagespeed/insights/)
   *  Mobile: 99/100
   *  Desktop: 94/100
 
