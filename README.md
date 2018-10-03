@@ -11,19 +11,19 @@ This project was an exercise in taking a foreign code base and improving the per
   *  Mobile: 99/100
   *  Desktop: 94/100
 
-#### Web Page Performance Test:
+#### [Web Page Performance Test:](https://www.webpagetest.org/)
   * First Byte Time: A
   * Keep-alive Enabled: A
   * Compress Transfer: A
   * Compress Images: A
 
-#### Pingdom Website Speed Test:
+#### [Pingdom Website Speed Test:](https://tools.pingdom.com/)
   * Performance grade: 82/100
   * Page size: 720.0 KB
   * Load time: 192 ms
   * Requests: 46
 
-#### GTmetrix:
+#### [GTmetrix:](https://gtmetrix.com/)
   * PageSpeed Score: 91%
   * YSlow Score: 75%
   * Fully Loaded Time: 1.4 s
@@ -34,23 +34,23 @@ This project was an exercise in taking a foreign code base and improving the per
 
 ## Initial Speed Test Scores
 
-#### Google Page Speed Insights Optimization:
+#### [Google Page Speed Insights Optimization:](https://developers.google.com/speed/pagespeed/insights/)
   *  Mobile: 62/100
   *  Desktop: 59/100
 
-#### Web Page Performance Test:
+#### [Web Page Performance Test:](https://www.webpagetest.org/)
   * First Byte Time: A
   * Keep-alive Enabled: A
   * Compress Transfer: F
   * Compress Images: B
 
-#### Pingdom Website Speed Test:
+#### [Pingdom Website Speed Test:](https://tools.pingdom.com/)
   * Performance grade: 75/100
   * Page size: 1.8 MB
   * Load time: 266 ms
   * Requests: 47
 
-#### GTmetrix:
+#### [GTmetrix:](https://gtmetrix.com/)
   * PageSpeed Score: 69%
   * YSlow Score: 64%
   * Fully Loaded Time: 1.8 s
